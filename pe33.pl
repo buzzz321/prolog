@@ -14,16 +14,7 @@ byPlane(paris,losAngeles).
 byPlane(bangkok,auckland).
 byPlane(losAngeles,auckland).
 
-%go(X,Y) :- go(X,Y).
-
-travel(X,Y) :- byCar(X,Y).
-travel(X,Y) :- byCar(X,Z),
-               travel(Z,Y).
-
-travel(X,Y) :- byTrain(X,Y).
-travel(X,Y) :- byTrain(X,Z),
-               travel(Z,Y).
-
-travel(X,Y) :- byPlane(X,Y).
-travel(X,Y) :- byPlane(X,Z),
-               travel(Z,Y).
+travel(X,Y,go(X,Y)) :- byCar(X,Y).
+travel(X,Y,go(X,Y)) :- byTrain(X,Y).
+travel(X,Y,go(X,Y)) :- byPlane(X,Y).
+travel(X,Y,go(X,Z,G)) :- travel(X,Z,go(X,Z)), travel(Z,Y,G).
