@@ -10,4 +10,6 @@ tran(neun,nine).
 
 
 listtran([],[]).
-listtran( [X|Tg], [Y|Te] ) :- listtran(Tg,Te).
+listtran(X,Y) :- tran(X,Y).
+listtran( [X|Tg], [Y|Te] ) :- listtran(X,Y),
+	listtran(Tg,Te).
